@@ -1,16 +1,31 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## API REST
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Project API: Uma API que oferece funcionalidades de CRUD (Create, Read, Update, Delete) para gerenciamento de informações sobre projetos
 
-## About Laravel
+### Passos para Configurar e Executar o Projeto Localmente
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
-
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Clone o repositório para sua máquina local.
+- Crie um arquivo .env utilizando o .env-example como base.
+- Atualize as configurações no .env conforme suas necessidades.
+- Acesse a pasta do projeto pelo terminal (console/PowerShell/CMD).
+- Execute o seguinte comando:
+```shell
+docker run --rm \
+    -u "$(id -u):$(id -g)" \
+    -v "$(pwd):/var/www/html" \
+    -w /var/www/html \
+    laravelsail/php82-composer:latest \
+    composer install --ignore-platform-reqs
+ ```
+- Após o término do processamento, inicie os serviços do contêiner executando o comando:
+```shell
+./sail up -d
+```
+- Execute o comando abaixo para gerar e configurar a chave da aplicação no arquivo .env:
+```shell
+sail art key:generate
+```
+- Rode as migrations e seeds
+```shell
+sail art migrate --seed
+```
